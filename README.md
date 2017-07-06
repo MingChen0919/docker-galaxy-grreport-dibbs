@@ -30,9 +30,15 @@ docker build -t 'mingchen0919/docker-galaxy-grreport-dibbs' ./
 
 # Run docker container
 
-```
+```r
 docker run -i -t -p 8080:80 -p 8021:21 -p 8022:22  \
     -e "GALAXY_CONFIG_ADMIN_USERS=example@gmail.com" \
-    -v /Users/mingchen/GoogleDrive/projects/docker/docker-galaxy-grreport-dibbs/map_to_docker_volumn/:/galaxy-central/my_tools/ \
+    mingchen0919/docker-galaxy-grreport-dibbs /bin/bash
+```
+
+```r
+docker run -i -t -p 8080:80 -p 8021:21 -p 8022:22  \
+    -e "GALAXY_CONFIG_ADMIN_USERS=example@gmail.com" \
+    -v /Users/mingchen/GoogleDrive/projects/docker/docker-galaxy-grreport-dibbs/map_to_docker_volume/:/galaxy-central/my_tools/ \
     mingchen0919/docker-galaxy-grreport-dibbs /bin/bash
 ```
