@@ -1,0 +1,9 @@
+api_key: admin
+galaxy_instance: http://localhost:8080
+tools:
+- name: augustus
+  owner: bgruening
+  tool_panel_section_label: "DIBBsTools"
+  tool_shed_url: https://toolshed.g2.bx.psu.edu/
+  revisions:
+          - "f5075dee9d6b"
