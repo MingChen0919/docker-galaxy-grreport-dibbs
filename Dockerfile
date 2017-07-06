@@ -78,3 +78,9 @@ RUN /tool_deps/_conda/bin/conda install -y samtools==1.4 && \
         sh $GALAXY_ROOT/fix_anaconda_intepreter_issue.sh
 
 ADD tool_xml_replacements/hisat2.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/hisat2/2ec097c8e843/hisat2/hisat2.xml
+
+
+#----------------------------------------------------------
+
+ADD tool_yml_files/20_htseq_count.yml $GALAXY_ROOT/tool_yml_files/20_htseq_count.yml
+RUN install-tools $GALAXY_ROOT/tool_yml_files/20_htseq_count.yml
