@@ -61,3 +61,20 @@ RUN install-tools $GALAXY_ROOT/tool_yml_files/18_interproscan.yml
 
 ADD tool_yml_files/19_augustus.yml $GALAXY_ROOT/tool_yml_files/19_augustus.yml
 RUN install-tools $GALAXY_ROOT/tool_yml_files/19_augustus.yml
+
+
+#--------- Fix tool installation issues -----------------
+#                                                       #
+#--------------------------------------------------------
+
+ADD fix_anaconda_intepreter_issue.sh $GALAXY_ROOT/fix_anaconda_intepreter_issue.sh
+
+#====================== hisat2 ==========================
+RUN /tool_deps/_conda/bin/conda install -y samtools==1.4 && \
+        cd /tool_deps/_conda/pkgs/samtools-1.4-0/bin && \
+        sh $GALAXY_ROOT/fix_anaconda_intepreter_issue.sh && \
+    /tool_deps/_conda/bin/conda install -y hisat2==2.0.5 && \
+        cd /tool_deps/_conda/pkgs/hisat2-2.0.5-py35_1/bin && \
+        sh $GALAXY_ROOT/fix_anaconda_intepreter_issue.sh
+
+ADD tool_xml_replacements/hisat2.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/hisat2/2ec097c8e843/hisat2/hisat2.xml

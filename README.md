@@ -4,7 +4,7 @@ This Docker container is built upon the `mingchen0919/docker-grreport`
 
 # Regex Work
 
-```
+```bash
 ls tool_yml_files > tool_installing_Dockerfile_commands.txt 
 ```
 
@@ -30,13 +30,13 @@ docker build -t 'mingchen0919/docker-galaxy-grreport-dibbs' ./
 
 # Run docker container
 
-```r
+```bash
 docker run -i -t -p 8080:80 -p 8021:21 -p 8022:22  \
     -e "GALAXY_CONFIG_ADMIN_USERS=example@gmail.com" \
     mingchen0919/docker-galaxy-grreport-dibbs /bin/bash
 ```
 
-```r
+```bash
 docker run -i -t -p 8080:80 -p 8021:21 -p 8022:22  \
     -e "GALAXY_CONFIG_ADMIN_USERS=example@gmail.com" \
     -v /Users/mingchen/GoogleDrive/projects/docker/docker-galaxy-grreport-dibbs/map_to_docker_volume/:/galaxy-central/my_tools/ \
