@@ -15,7 +15,11 @@
         <regex match="Warning: Read (.+) claims to have an aligned mate which could not be found. \(Is the SAM file properly sorted\?\)" source="stderr" level="warning" description="PAIRED DATA MISSING OR NOT PROPERLY SORTED. Try reruning and selecting the option to 'Force sorting of SAM/BAM file by NAME'. See stderr output of this dataset for more information." />
     </stdio>
 
-    <version_command>htseq-count -h | grep version | sed 's/^\(.*\)*\(version .*\)\./\2/'</version_command>
+    <version_command><![CDATA[
+        export PATH=/tool_deps/_conda/pkgs/htseq-0.7.2-py35_0/bin:$PATH &&
+
+        htseq-count -h | grep version | sed 's/^\(.*\)*\(version .*\)\./\2/'
+    ]]></version_command>
 
     <command><![CDATA[
     export PATH=/tool_deps/_conda/pkgs/htseq-0.7.2-py35_0/bin:\$PATH &&
