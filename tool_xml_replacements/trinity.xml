@@ -6,7 +6,7 @@
     <expand macro="requirements" />
     <command detect_errors="aggressive"><![CDATA[
         export PATH=/tool_deps/_conda/pkgs/trinity-2.4.0-5/bin:\$PATH &&
-        export PATH=/tool_deps/_conda/pkgs/bowtie2-2.3.0-py35_1/bin:\$PATH &&
+        export PATH=/tool_deps/bowtie2/2.2.6/iuc/package_bowtie_2_2_6/0d9cd7487cc9/bin:\$PATH &&
         export PATH=/tool_deps/_conda/pkgs/jellyfish-2.2.6-0/bin:\$PATH &&
         export PATH=/tool_deps/_conda/pkgs/parafly-r2013_01_21-0/bin:\$PATH &&
 
