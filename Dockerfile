@@ -62,11 +62,18 @@ RUN install-tools $GALAXY_ROOT/tool_yml_files/18_interproscan.yml
 ADD tool_yml_files/19_augustus.yml $GALAXY_ROOT/tool_yml_files/19_augustus.yml
 RUN install-tools $GALAXY_ROOT/tool_yml_files/19_augustus.yml
 
+ADD tool_yml_files/20_htseq_count.yml $GALAXY_ROOT/tool_yml_files/20_htseq_count.yml
+RUN install-tools $GALAXY_ROOT/tool_yml_files/20_htseq_count.yml
 
+ADD tool_yml_files/21_trinity.yml $GALAXY_ROOT/tool_yml_files/21_trinity.yml
+RUN install-tools $GALAXY_ROOT/tool_yml_files/21_trinity.yml
+
+
+#========================================================
 #--------- Fix tool installation issues -----------------
-#                                                       #
-#--------------------------------------------------------
 
+#--------------------------------------------------------
+# add a script to fix anaconda bad intepreter issue
 ADD fix_anaconda_intepreter_issue.sh $GALAXY_ROOT/fix_anaconda_intepreter_issue.sh
 
 #====================== hisat2 ==========================
@@ -78,9 +85,29 @@ RUN /tool_deps/_conda/bin/conda install -y samtools==1.4 && \
         sh $GALAXY_ROOT/fix_anaconda_intepreter_issue.sh
 
 ADD tool_xml_replacements/hisat2.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/hisat2/2ec097c8e843/hisat2/hisat2.xml
-
-
 #----------------------------------------------------------
 
-ADD tool_yml_files/20_htseq_count.yml $GALAXY_ROOT/tool_yml_files/20_htseq_count.yml
-RUN install-tools $GALAXY_ROOT/tool_yml_files/20_htseq_count.yml
+
+
+#====================== gatk2 ============================
+ADD tool_sources/GenomeAnalysisTK-2.8-1.tar.bz2 $GALAXY_ROOT/software/
+RUN cd $GALAXY_ROOT/software && \
+    tar -xvjf GenomeAnalysisTK-2.8-1.tar.bz2 && \
+    echo GATK2_PATH=$GALAXY_ROOT/software/GenomeAnalysisTK-2.8-1; export GATK2_PATH > /tool_deps/environment_settings/GATK2_PATH/iuc/gatk2/84584664264c/env.sh
+#----------------------------------------------------------
+
+
+#====================== stringtie ============================
+RUN /tool_deps/_conda/bin/conda install -y stringtie==1.3.3 && \
+        cd /tool_deps/_conda/pkgs/stringtie-1.3.3-0/bin && \
+        sh $GALAXY_ROOT/fix_anaconda_intepreter_issue.sh
+ADD tool_xml_replacements/stringtie.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/stringtie/6e45b443ef1f/stringtie/stringtie.xml
+ADD tool_xml_replacements/stringtie_merge.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/stringtie/6e45b443ef1f/stringtie/stringtie_merge.xml
+#-------------------------------------------------------------
+
+
+#====================== trinity ===============================
+RUN /tool_deps/_conda/bin/conda install -y trinity==2.4.0 && \
+        cd /tool_deps/_conda/pkgs/bowtie2-2.3.0-py35_1/bin && \
+        sh $GALAXY_ROOT/fix_anaconda_intepreter_issue.sh
+ADD tool_xml_replacements/trinity.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/trinity/e65e640e6196/trinity/trinity.xml
