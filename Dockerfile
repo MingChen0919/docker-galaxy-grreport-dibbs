@@ -90,10 +90,11 @@ ADD tool_xml_replacements/hisat2.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iu
 
 
 #====================== gatk2 ============================
-ADD tool_sources/GenomeAnalysisTK-2.8-1.tar.bz2 $GALAXY_ROOT/software/
+COPY tool_sources/GenomeAnalysisTK-2.8-1.tar.bz2 $GALAXY_ROOT/software/
 RUN cd $GALAXY_ROOT/software && \
     tar -xvjf GenomeAnalysisTK-2.8-1.tar.bz2 && \
-    echo GATK2_PATH=$GALAXY_ROOT/software/GenomeAnalysisTK-2.8-1; export GATK2_PATH > /tool_deps/environment_settings/GATK2_PATH/iuc/gatk2/84584664264c/env.sh
+    echo 'GATK2_PATH=$GALAXY_ROOT/software/GenomeAnalysisTK-2.8-1; export GATK2_PATH' > /tool_deps/environment_settings/GATK2_PATH/iuc/gatk2/84584664264c/env.sh
+
 #----------------------------------------------------------
 
 

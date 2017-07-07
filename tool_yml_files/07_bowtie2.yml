@@ -6,4 +6,5 @@ tools:
   tool_panel_section_label: "DIBBsTools"
   tool_shed_url: https://toolshed.g2.bx.psu.edu/
   revisions:
-          - "8ccbdbe9a695"
+          - "937aa69e715f"
+          - "a9d4f71dbfb0"
