@@ -1,3 +1,4 @@
 .idea
 map_to_docker_volumn
 tool_xml_replacements/copy_from_container_to_host*
+.DS_Store
