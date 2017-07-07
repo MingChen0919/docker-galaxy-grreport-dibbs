@@ -107,6 +107,15 @@ ADD tool_xml_replacements/stringtie_merge.xml /shed_tools/toolshed.g2.bx.psu.edu
 #-------------------------------------------------------------
 
 
+#====================== htseq ============================
+RUN /tool_deps/_conda/bin/conda install -y htseq==0.7.2 && \
+        cd /tool_deps/_conda/pkgs/htseq-0.7.2-py35_0/bin && \
+        sh $GALAXY_ROOT/fix_anaconda_intepreter_issue.sh
+ADD tool_xml_replacements/htseq-count.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/lparsons/htseq_count/620d5603d1a8/htseq_count/htseq-count.xml
+#-------------------------------------------------------------
+
+
+
 #====================== trinity ===============================
 RUN /tool_deps/_conda/bin/conda install -y trinity==2.4.0 && \
         cd /tool_deps/_conda/pkgs/bowtie2-2.3.0-py35_1/bin && \
