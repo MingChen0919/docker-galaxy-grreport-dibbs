@@ -1,0 +1,32 @@
+<macros>
+    <xml name="requirements">
+        <requirements>
+            <requirement type="package" version="4.3k">snpeff</requirement>
+        </requirements>
+    </xml>
+  <xml name="stdio">
+    <stdio>
+        <exit_code range=":-1"  level="fatal" description="Error: Cannot open file" />
+        <exit_code range="1:"  level="fatal" description="Error" />
+    </stdio>
+  </xml>
+  <xml name="version_command">
+    <version_command><![CDATA[
+	    export PATH=/tool_deps/_conda/pkgs/snpeff-4.3k-0/bin:$PATH &&
+
+        snpEff -version
+    ]]></version_command>
+  </xml>
+  <token name="@WRAPPER_VERSION@">4.3k</token>
+  <token name="@SNPEFF_VERSION@">SnpEff4.3</token>
+  <token name="@SNPEFF_DATABASE_URL@">https://sourceforge.net/projects/snpeff/files/databases/v4_3/</token>
+  <token name="@EXTERNAL_DOCUMENTATION@">
+For details about this tool, please go to: http://snpeff.sourceforge.net/SnpEff_manual.html
+  </token>
+  <xml name="citations">
+      <citations>
+        <citation type="doi">10.4161/fly.19695</citation>
+        <yield />
+      </citations>
+  </xml>
+</macros>

@@ -84,7 +84,7 @@ RUN /tool_deps/_conda/bin/conda install -y samtools==1.4 && \
         cd /tool_deps/_conda/pkgs/hisat2-2.0.5-py35_1/bin && \
         sh $GALAXY_ROOT/fix_anaconda_intepreter_issue.sh
 
-ADD tool_xml_replacements/hisat2.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/hisat2/2ec097c8e843/hisat2/hisat2.xml
+ ####=======ADD tool_xml_replacements/hisat2.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/hisat2/2ec097c8e843/hisat2/hisat2.xml
 #----------------------------------------------------------
 
 
@@ -104,8 +104,8 @@ RUN cd $GALAXY_HOME/software/ && \
 RUN /tool_deps/_conda/bin/conda install -y stringtie==1.3.3 && \
         cd /tool_deps/_conda/pkgs/stringtie-1.3.3-0/bin && \
         sh $GALAXY_ROOT/fix_anaconda_intepreter_issue.sh
-ADD tool_xml_replacements/stringtie.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/stringtie/6e45b443ef1f/stringtie/stringtie.xml
-ADD tool_xml_replacements/stringtie_merge.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/stringtie/6e45b443ef1f/stringtie/stringtie_merge.xml
+ ####=======ADD tool_xml_replacements/stringtie.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/stringtie/6e45b443ef1f/stringtie/stringtie.xml
+ ####=======ADD tool_xml_replacements/stringtie_merge.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/stringtie/6e45b443ef1f/stringtie/stringtie_merge.xml
 #-------------------------------------------------------------
 
 
@@ -114,7 +114,7 @@ ADD tool_xml_replacements/stringtie_merge.xml /shed_tools/toolshed.g2.bx.psu.edu
 #RUN /tool_deps/_conda/bin/conda install -y htseq==0.6.1.post1 && \
 #        cd /tool_deps/_conda/pkgs/htseq-0.6.1.post1-py27_1/bin && \
 #        sh $GALAXY_ROOT/fix_anaconda_intepreter_issue.sh
-ADD tool_xml_replacements/htseq-count.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/lparsons/htseq_count/620d5603d1a8/htseq_count/htseq-count.xml
+ ####=======ADD tool_xml_replacements/htseq-count.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/lparsons/htseq_count/620d5603d1a8/htseq_count/htseq-count.xml
 ADD tool_yml_files/21_package_htseq_0_6.yml $GALAXY_ROOT/tool_yml_files/21_package_htseq_0_6.yml
 RUN install-tools $GALAXY_ROOT/tool_yml_files/21_package_htseq_0_6.yml
 #-------------------------------------------------------------
@@ -125,4 +125,28 @@ RUN install-tools $GALAXY_ROOT/tool_yml_files/21_package_htseq_0_6.yml
 RUN /tool_deps/_conda/bin/conda install -y trinity==2.4.0 && \
         cd /tool_deps/_conda/pkgs/bowtie2-2.3.0-py35_1/bin && \
         sh $GALAXY_ROOT/fix_anaconda_intepreter_issue.sh
-ADD tool_xml_replacements/trinity.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/trinity/e65e640e6196/trinity/trinity.xml
+ ####=======ADD tool_xml_replacements/trinity.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/trinity/e65e640e6196/trinity/trinity.xml
+#----------------------------------------------------------------
+
+
+#====================== snpeff =================================
+RUN /tool_deps/_conda/bin/conda install -y snpeff==4.3k && \
+    cd /tool_deps/_conda/pkgs/snpeff-4.3k-0/share/snpeff-4.3k-0 && mkdir -p data && chown -R galaxy:root data
+ ####=======ADD tool_xml_replacements/snpEff_macros.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/snpeff/7adfd0589f49/snpeff/snpEff_macros.xml
+ ####=======ADD tool_xml_replacements/snpEff.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/snpeff/7adfd0589f49/snpeff/snpEff.xml
+ ####=======ADD tool_xml_replacements/snpEff_download.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/snpeff/7adfd0589f49/snpeff/snpEff_download.xml
+ ####=======ADD tool_xml_replacements/snpEff_databases.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/snpeff/7adfd0589f49/snpeff/snpEff_databases.xml
+#----------------------------------------------------------------
+
+
+COPY tool_xml_replacements $GALAXY_HOME/tool_xml_replacements
+RUN cd $GALAXY_HOME && \
+    cp tool_xml_replacements/hisat2.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/hisat2/2ec097c8e843/hisat2/hisat2.xml && \
+    cp tool_xml_replacements/stringtie.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/stringtie/6e45b443ef1f/stringtie/stringtie.xml && \
+    cp tool_xml_replacements/stringtie_merge.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/stringtie/6e45b443ef1f/stringtie/stringtie_merge.xml && \
+    cp tool_xml_replacements/htseq-count.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/lparsons/htseq_count/620d5603d1a8/htseq_count/htseq-count.xml && \
+    cp tool_xml_replacements/trinity.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/trinity/e65e640e6196/trinity/trinity.xml && \
+    cp tool_xml_replacements/snpEff_macros.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/snpeff/7adfd0589f49/snpeff/snpEff_macros.xml && \
+    cp tool_xml_replacements/snpEff.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/snpeff/7adfd0589f49/snpeff/snpEff.xml && \
+    cp tool_xml_replacements/snpEff_download.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/snpeff/7adfd0589f49/snpeff/snpEff_download.xml && \
+    cp tool_xml_replacements/snpEff_databases.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/snpeff/7adfd0589f49/snpeff/snpEff_databases.xml
