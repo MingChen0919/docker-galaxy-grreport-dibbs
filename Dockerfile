@@ -110,10 +110,13 @@ ADD tool_xml_replacements/stringtie_merge.xml /shed_tools/toolshed.g2.bx.psu.edu
 
 
 #====================== htseq ============================
-RUN /tool_deps/_conda/bin/conda install -y htseq==0.7.2 && \
-        cd /tool_deps/_conda/pkgs/htseq-0.7.2-py35_0/bin && \
-        sh $GALAXY_ROOT/fix_anaconda_intepreter_issue.sh
+# the htseq-count wrapper is based on version 0.6.1.post1, which requires python 2.7.
+#RUN /tool_deps/_conda/bin/conda install -y htseq==0.6.1.post1 && \
+#        cd /tool_deps/_conda/pkgs/htseq-0.6.1.post1-py27_1/bin && \
+#        sh $GALAXY_ROOT/fix_anaconda_intepreter_issue.sh
 ADD tool_xml_replacements/htseq-count.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/lparsons/htseq_count/620d5603d1a8/htseq_count/htseq-count.xml
+ADD tool_yml_files/21_package_htseq_0_6.yml $GALAXY_ROOT/tool_yml_files/21_package_htseq_0_6.yml
+RUN install-tools $GALAXY_ROOT/tool_yml_files/21_package_htseq_0_6.yml
 #-------------------------------------------------------------
 
 

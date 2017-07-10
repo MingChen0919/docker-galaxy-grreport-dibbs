@@ -16,13 +16,27 @@
     </stdio>
 
     <version_command><![CDATA[
-        export PATH=/tool_deps/_conda/pkgs/htseq-0.7.2-py35_0/bin:$PATH &&
+        PYTHONPATH=/export/tool_deps/htseq/0.6.1/iuc/package_htseq_0_6/fbb72996807d/lib/python:$PYTHONPATH; export PYTHONPATH
+        PATH=/export/tool_deps/htseq/0.6.1/iuc/package_htseq_0_6/fbb72996807d/bin:$PATH; export PATH
+        PYTHONPATH=/export/tool_deps/numpy/1.7.1/iuc/package_numpy_1_7/300877695495/lib/python:$PYTHONPATH; export PYTHONPATH
+        PATH=/export/tool_deps/numpy/1.7.1/iuc/package_numpy_1_7/300877695495/bin:$PATH; export PATH
+        PYTHONPATH=/export/tool_deps/matplotlib/1.2.1/iuc/package_matplotlib_1_2/48020985e28c/lib/python:$PYTHONPATH; export PYTHONPATH
+        HTSEQ_ROOT_PATH=/export/tool_deps/htseq/0.6.1/iuc/package_htseq_0_6/fbb72996807d; export HTSEQ_ROOT_PATH
+        HTSEQ_ROOT_DIR=/export/tool_deps/htseq/0.6.1/iuc/package_htseq_0_6/fbb72996807d; export HTSEQ_ROOT_DIR
 
         htseq-count -h | grep version | sed 's/^\(.*\)*\(version .*\)\./\2/'
     ]]></version_command>
 
     <command><![CDATA[
-    export PATH=/tool_deps/_conda/pkgs/htseq-0.7.2-py35_0/bin:\$PATH &&
+
+    PYTHONPATH=/export/tool_deps/htseq/0.6.1/iuc/package_htseq_0_6/fbb72996807d/lib/python:\$PYTHONPATH; export PYTHONPATH
+    PATH=/export/tool_deps/htseq/0.6.1/iuc/package_htseq_0_6/fbb72996807d/bin:\$PATH; export PATH
+    PYTHONPATH=/export/tool_deps/numpy/1.7.1/iuc/package_numpy_1_7/300877695495/lib/python:\$PYTHONPATH; export PYTHONPATH
+    PATH=/export/tool_deps/numpy/1.7.1/iuc/package_numpy_1_7/300877695495/bin:\$PATH; export PATH
+    PYTHONPATH=/export/tool_deps/matplotlib/1.2.1/iuc/package_matplotlib_1_2/48020985e28c/lib/python:\$PYTHONPATH; export PYTHONPATH
+    HTSEQ_ROOT_PATH=/export/tool_deps/htseq/0.6.1/iuc/package_htseq_0_6/fbb72996807d; export HTSEQ_ROOT_PATH
+    HTSEQ_ROOT_DIR=/export/tool_deps/htseq/0.6.1/iuc/package_htseq_0_6/fbb72996807d; export HTSEQ_ROOT_DIR
+
     export PATH=/tool_deps/_conda/pkgs/samtools-1.3.1-5/bin:\$PATH &&
 
     ##set up input files
