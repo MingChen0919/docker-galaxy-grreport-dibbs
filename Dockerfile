@@ -35,6 +35,9 @@ RUN install-tools $GALAXY_ROOT/tool_yml_files/09_cuffmerge.yml
 ADD tool_yml_files/10_stringtie.yml $GALAXY_ROOT/tool_yml_files/10_stringtie.yml
 RUN install-tools $GALAXY_ROOT/tool_yml_files/10_stringtie.yml
 
+ADD tool_yml_files/11.1_package_snpeff_4_1.yml $GALAXY_ROOT/tool_yml_files/11.1_package_snpeff_4_1.yml
+RUN install-tools $GALAXY_ROOT/tool_yml_files/11.1_package_snpeff_4_1.yml
+
 ADD tool_yml_files/11_snpeff.yml $GALAXY_ROOT/tool_yml_files/11_snpeff.yml
 RUN install-tools $GALAXY_ROOT/tool_yml_files/11_snpeff.yml
 
@@ -132,12 +135,12 @@ RUN /tool_deps/_conda/bin/conda install -y trinity==2.4.0 && \
 #====================== snpeff =================================
 RUN /tool_deps/_conda/bin/conda install -y snpeff==4.3k && \
     cd /tool_deps/_conda/pkgs/snpeff-4.3k-0/share/snpeff-4.3k-0 && mkdir -p data && chown -R galaxy:root data
- ####=======ADD tool_xml_replacements/snpEff_macros.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/snpeff/7adfd0589f49/snpeff/snpEff_macros.xml
- ####=======ADD tool_xml_replacements/snpEff.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/snpeff/7adfd0589f49/snpeff/snpEff.xml
- ####=======ADD tool_xml_replacements/snpEff_download.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/snpeff/7adfd0589f49/snpeff/snpEff_download.xml
- ####=======ADD tool_xml_replacements/snpEff_databases.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/snpeff/7adfd0589f49/snpeff/snpEff_databases.xml
 #----------------------------------------------------------------
 
+
+#======================= bwa ====================================
+RUN /tool_deps/_conda/bin/conda install -y bwa==0.7.15
+------------------------------------------------------------------
 
 COPY tool_xml_replacements $GALAXY_HOME/tool_xml_replacements
 RUN cd $GALAXY_HOME && \
@@ -146,7 +149,6 @@ RUN cd $GALAXY_HOME && \
     cp tool_xml_replacements/stringtie_merge.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/stringtie/6e45b443ef1f/stringtie/stringtie_merge.xml && \
     cp tool_xml_replacements/htseq-count.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/lparsons/htseq_count/620d5603d1a8/htseq_count/htseq-count.xml && \
     cp tool_xml_replacements/trinity.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/trinity/e65e640e6196/trinity/trinity.xml && \
-    cp tool_xml_replacements/snpEff_macros.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/snpeff/7adfd0589f49/snpeff/snpEff_macros.xml && \
-    cp tool_xml_replacements/snpEff.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/snpeff/7adfd0589f49/snpeff/snpEff.xml && \
-    cp tool_xml_replacements/snpEff_download.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/snpeff/7adfd0589f49/snpeff/snpEff_download.xml && \
-    cp tool_xml_replacements/snpEff_databases.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/snpeff/7adfd0589f49/snpeff/snpEff_databases.xml
+    cp tool_xml_replacements/bwa.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/devteam/bwa/051eba708f43/bwa/bwa.xml && \
+    cp tool_xml_replacements/bwa.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/devteam/bwa/051eba708f43/bwa/bwa-mem.xml
+

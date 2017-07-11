@@ -1,9 +1,9 @@
 api_key: admin
 galaxy_instance: http://localhost:8080
 tools:
-- name: snpeff
+- name: package_snpeff_4_1
   owner: iuc
   tool_panel_section_label: "DIBBsTools"
   tool_shed_url: https://toolshed.g2.bx.psu.edu/
   revisions:
-          - "20f0429a4bfe"
+          - "374c7f8421fb"
