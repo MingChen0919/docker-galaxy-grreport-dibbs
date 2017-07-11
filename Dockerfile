@@ -140,7 +140,7 @@ RUN /tool_deps/_conda/bin/conda install -y snpeff==4.3k && \
 
 #======================= bwa ====================================
 RUN /tool_deps/_conda/bin/conda install -y bwa==0.7.15
-------------------------------------------------------------------
+#------------------------------------------------------------------
 
 COPY tool_xml_replacements $GALAXY_HOME/tool_xml_replacements
 RUN cd $GALAXY_HOME && \
